@@ -1,7 +1,47 @@
-from bs4 import BeautifulSoup 
+First Install
+pip install beautifulsoup4
+
+
+
+then use the below code:
+
+from bs4 import BeautifulSoup
 import requests
 
 url='https://www.scrapethissite.com/pages/forms/'
-page = requests.get(url)
-BeautifulSoup(page.text,'html')
-print(Soup.prettify)
+page = requests.get(url,verify=False)
+soup = BeautifulSoup(page.text,'html.parser')
+print(soup.prettify())
+
+
+For those who are getting the below error: use (verify=False) from the above code However, it's important to note that this is not recommended for production use because it bypasses security checks.
+This should work as expected to scrape and prettify the HTML content of the provided URL.
+
+
+
+
+User
+---------------------------------------------------------------------------
+Error                                     Traceback (most recent call last)
+C:\Users\Admin\Anaconda3\lib\site-packages\requests\packages\urllib3\contrib\pyopenssl.py in wrap_socket(self, sock, server_side, do_handshake_on_connect, suppress_ragged_eofs, server_hostname)
+    437             try:
+--> 438                 cnx.do_handshake()
+    439             except OpenSSL.SSL.WantReadError:
+
+C:\Users\Admin\Anaconda3\lib\site-packages\OpenSSL\SSL.py in do_handshake(self)
+   1637         result = _lib.SSL_do_handshake(self._ssl)
+-> 1638         self._raise_ssl_error(self._ssl, result)
+   1639 
+
+C:\Users\Admin\Anaconda3\lib\site-packages\OpenSSL\SSL.py in _raise_ssl_error(self, ssl, result)
+   1377         else:
+-> 1378             _raise_current_error()
+   1379 
+
+C:\Users\Admin\Anaconda3\lib\site-packages\OpenSSL\_util.py in exception_from_error_queue(exception_type)
+     53 
+---> 54     raise exception_type(errors)
+     55 
+
+Error: [('SSL routines', 'ssl3_get_server_certificate', 'certificate verify failed')]
+
